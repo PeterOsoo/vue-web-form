@@ -13,31 +13,41 @@
       <option value="tester">Web Tester</option>
     </select>
 
-    <div class="terms">
-      <label>Accept terms and conditions</label>
-      <input type="checkbox" v-model="terms" required />
+    <label>Skills (press alt + comma to add):</label>
+    <input type="text" v-model="tempSkill" @keyup.alt="addSkill" />
+    <div v-for="skill in skills" :key="skill" class="pill">
+      {{ skill }}
     </div>
 
     <label>Counties to Relocate </label>
     <div>
-      <label>Kisumu</label>
       <input type="checkbox" value="kisumu" v-model="counties" />
+      <label>Kisumu</label>
     </div>
     <div>
-      <label>Nairobi</label>
       <input type="checkbox" value="nairobi" v-model="counties" />
+      <label>Nairobi</label>
     </div>
     <div>
-      <label>Mombasa</label>
       <input type="checkbox" value="mombasa" v-model="counties" />
+      <label>Mombasa</label>
+    </div>
+
+    <div class="terms">
+      <input type="checkbox" v-model="terms" required />
+      <label>Accept terms and conditions</label>
     </div>
   </form>
 
-  <p>Email: {{ email }}</p>
-  <p>Password: {{ password }}</p>
-  <p>Your role: {{ role }}</p>
-  <p>Terms accepted: {{ terms }}</p>
-  <p>Counties: {{ counties }}</p>
+  <div class="display">
+    <h3>User Data</h3>
+    <p>Email: {{ email }}</p>
+    <p>Password: {{ password }}</p>
+    <p>Your role: {{ role }}</p>
+    <p>Terms accepted: {{ terms }}</p>
+    <p>Counties: {{ counties }}</p>
+    <p>Skills: {{ skills }}</p>
+  </div>
 </template>
 
 <script>
@@ -50,7 +60,20 @@ export default {
       role: "developer",
       terms: false,
       counties: [],
+      skills: [],
+      tempSkill: "",
     };
+  },
+  methods: {
+    addSkill($event) {
+      console.log($event);
+      if ($event.key === "," && this.tempSkill) {
+        if (!this.skills.includes(this.tempSkill)) {
+          this.skills.push(this.tempSkill);
+        }
+        this.tempSkill = "";
+      }
+    },
   },
 };
 </script>
@@ -82,5 +105,12 @@ select {
   border: none;
   border-bottom: 1px solid #ddd;
   color: #555;
+}
+input[type="checkbox"] {
+  display: inline-block;
+  width: 16px;
+  margin: 0 10px 0 0;
+  position: relative;
+  top: 2px;
 }
 </style>
