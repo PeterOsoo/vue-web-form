@@ -18,18 +18,18 @@
       <input type="checkbox" v-model="terms" required />
     </div>
 
-    <label>Skills</label>
+    <label>Counties to Relocate </label>
     <div>
-      <label>Html</label>
-      <input type="checkbox" value="html" v-model="skills" />
+      <label>Kisumu</label>
+      <input type="checkbox" value="kisumu" v-model="counties" />
     </div>
     <div>
-      <label>CSS</label>
-      <input type="checkbox" value="css" v-model="skills" />
+      <label>Nairobi</label>
+      <input type="checkbox" value="nairobi" v-model="counties" />
     </div>
     <div>
-      <label>Javascript</label>
-      <input type="checkbox" value="javascript" v-model="skills" />
+      <label>Mombasa</label>
+      <input type="checkbox" value="mombasa" v-model="counties" />
     </div>
   </form>
 
@@ -37,7 +37,7 @@
   <p>Password: {{ password }}</p>
   <p>Your role: {{ role }}</p>
   <p>Terms accepted: {{ terms }}</p>
-  <p>Skills: {{ skills }}</p>
+  <p>Counties: {{ counties }}</p>
 </template>
 
 <script>
@@ -49,7 +49,7 @@ export default {
       password: "",
       role: "developer",
       terms: false,
-      skills: [],
+      counties: [],
     };
   },
 };
